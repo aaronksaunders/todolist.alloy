@@ -6,7 +6,7 @@ exports.definition = {
 			"done":"integer"
 		},
 		"adapter": {
-			"type":"sql",
+			"type":"sql2",
 			"collection_name":"todo"
 		}
 	},		
