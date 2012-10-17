@@ -1,0 +1,7 @@
+<Alloy>
+    <Tab title="Done">
+    	    <Window id="doneWin" title="Done" class="container">
+    	    	    <TableView id="doneTable" />
+    	    </Window>
+    </Tab>
+</Alloy>
