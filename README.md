@@ -58,6 +58,8 @@ To create custom queries, you can extend the model object. In the example below,
 I have extended the model object with a custom query to fetch what items I completed
 today.
 
+	// app/models/todo.js
+	// ------------------
 	extendCollection : function(Collection) {
 		_.extend(Collection.prototype, {
 
@@ -114,6 +116,8 @@ today.
 First we added the ability to pass in custom queries. We took this approach so the sql sync adapter stays as simple as possible and all custimization should be in the extended
 model object
 
+	// app/assets/alloy/sync/sql2.js
+	// -----------------------------
 	if (opts.query) {
 	    // passed in predefined query
 	    rs = db.execute("SELECT * FROM " + table + " " + opts.query.sql, opts.query.params);
@@ -124,6 +128,8 @@ model object
 ###Query Model by ID###
 Then we added a conditional statement to look for the `id` on the model object that was passed in. If object provided then we just query for a single object
 
+	// app/assets/alloy/sync/sql2.js
+	// -----------------------------
 	// no query provided, check for model id
 	var sql = "SELECT * FROM " + table;
 
