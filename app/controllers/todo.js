@@ -1,12 +1,5 @@
-var addBtn = Ti.UI.createButton({
-    title : '+'
-});
-
-addBtn.addEventListener('click', function() {
-    var controller = Alloy.getController("add");
-    controller.addWin.open();
-});
-$.todoWin.setRightNavButton(addBtn);
+var globals = require("globals");
+var todos = globals.globalGet("todos");
 
 todos.on('fetch', function() {
     updateContent(todos);
@@ -38,4 +31,31 @@ function updateContent(_collection) {
     }
     $.todoTable.setData(rows);
 };
+
+function addToDoItem() {
+    var controller = Alloy.getController("add");
+    controller.addWin.open();
+}
+
+//
+// STUB FOR ANDROID MENUS ON IOS
+//
+if (Titanium.App.iOS === undefined) {
+
+    $.todoWin.activity.onCreateOptionsMenu = function(e) {
+
+        var menu = e.menu;
+        var menuItem = menu.add({
+            title : "Add Item"
+        });
+        menuItem.addEventListener("click", addToDoItem);
+    }
+} else {
+    var addBtn = Ti.UI.createButton({
+        title : '+'
+    });
+    addBtn.addEventListener('click', addToDoItem);
+    $.todoWin.setRightNavButton(addBtn);
+
+}
 

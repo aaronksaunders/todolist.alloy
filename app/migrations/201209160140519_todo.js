@@ -2,7 +2,8 @@ migration.up = function(db) {
 	db.createTable({
 		"columns": {
 			"item":"text",
-			"done":"integer"
+            "done":"integer",
+            "date_completed":"date"
 		},
 		"adapter": {
 			"type":"sql",
