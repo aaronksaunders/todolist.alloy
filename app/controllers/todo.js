@@ -1,4 +1,5 @@
 var globals = require("globals");
+var moment = require("moment");
 var todos = globals.globalGet("todos");
 
 todos.on('fetch', function() {
@@ -10,7 +11,7 @@ $.todoTable.on('click', function(e) {
 
     todos.get(e.rowData.id).set({
         "done" : 1,
-        "date_completed" : new Date().getTime()
+        "date_completed" : moment().unix()
     }).save();
 
     // update view
@@ -29,6 +30,9 @@ function updateContent(_collection) {
         }));
 
         Ti.API.info(JSON.stringify(_i, null, 2));
+
+        // moment.unix(i.date_update).calendar() 
+        _i.get("date_completed") && Ti.API.info("time " + moment.unix(_i.get("date_completed")).calendar());
     }
     $.todoTable.setData(rows);
 };
