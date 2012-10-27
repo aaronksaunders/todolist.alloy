@@ -9,7 +9,8 @@ $.todoTable.on('click', function(e) {
     Ti.API.info('ID:' + e.rowData.id);
 
     todos.get(e.rowData.id).set({
-        "done" : 1
+        "done" : 1,
+        "date_completed" : new Date().getTime()
     }).save();
 
     // update view
