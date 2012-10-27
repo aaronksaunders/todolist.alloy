@@ -87,7 +87,12 @@ function Sync(model, method, opts) {
             resp = model.toJSON();
             break;
         case "read":
-            var sql = "SELECT * FROM " + table, rs = db.execute(sql), len = 0;
+            var sql = "SELECT * FROM " + table;
+            if (model.id != undefined) {
+                sql = sql + String.format(" WHERE id = '%s'", model.id);
+            }
+            Ti.API.info('query string ' + sql);
+            var rs = db.execute(sql), len = 0;
             var values = [];
             while (rs.isValidRow()) {
                 var o = {}, fc = 0;
